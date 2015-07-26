@@ -9,6 +9,7 @@
         clear: both;
         border-top:1px solid #7ECEF4;
         border-bottom:1px solid #7ECEF4;
+        display: none;
     }
     .title img{
     	width: 47px;
