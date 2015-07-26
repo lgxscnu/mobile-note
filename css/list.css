@@ -1,0 +1,129 @@
+*{ 
+    margin:0; 
+    padding:0; 
+    -webkit-box-sizing:border-box; 
+    -moz-box-sizing:border-box; 
+    font-family: "微软雅黑"; 
+}
+a{ 
+    text-decoration: none;
+}
+
+html{ 
+    font-size: 16px;
+}
+body{
+    background:#fff;
+    padding-bottom: 45px;
+}
+
+/*header*/
+#header{
+    width:100%;
+    height:50px;
+}
+.header_txt{
+    width:50%;
+    height:50px;
+    float:left;
+}   
+.header_txt a{
+    display: block;
+    width:100%;
+    height:100%;
+    font-family: "SourceHanSansCN";
+    font-size:18px;
+    line-height:50px;
+    color:#fff; 
+    text-align: center;
+}
+.list{
+    background:#6ab7ff;
+}
+.review{
+    background:#406e99;
+}
+    
+/*list_item*/
+#list_item{
+    width:100%;
+    border-bottom: 1px solid #7ecef4;
+}
+#date_wrap{
+    width:100%;
+    height:30px;
+    background:-webkit-linear-gradient(left,#57e1bf,#0084ff);
+    background:-moz-linear-gradient(left,#57e1bf,#0084ff);
+    padding-right: 2%;
+}
+#date{
+    float:right;
+    color:#fff;
+    font-size: 14px;
+    line-height:30px;
+}
+#list_con{
+    width:100%;
+    height:70px;
+    padding:12px 4.8% 22px 7%;
+}
+.list_img{
+    width:50px;
+    height:50px;
+    float:left;
+}
+
+.list_num{
+    width:24.4%;
+    height:50px;
+    float:left;
+    margin-left: 4.93%;
+    font-size:30px;
+    color:#35e47f;
+    line-height:50px;
+}
+.earn{ color:#35e47f;}
+.cost{ color:#ff364e;}
+.list_msg{
+    width:41%;
+    height:50px;
+    float:left;
+    margin-left: auto;
+    font-size:18px;
+    color:#606060;
+    line-height: 50px;
+}
+.list_next{
+    width:12px;
+    float:right;
+    margin-top:15px;
+    
+}
+.list_next img{
+    width:100%;
+    height:100%;
+}
+
+        
+/*add_item*/
+#add_item{
+    width:100%;
+    height:45px;
+    background:-webkit-linear-gradient(left,#57e1bf,#0084ff);
+    background:-moz-linear-gradient(left,#57e1bf,#0084ff);
+    position:fixed;
+    bottom:0;
+    
+}
+#add_item a{
+    display: block;
+    width:100%;
+    height:45px;
+    text-align: center;
+    color:#fff;
+    font-size: 18px;
+    line-height:45px;
+}
+#add_item a:visited {
+    color:#fff;
+}
