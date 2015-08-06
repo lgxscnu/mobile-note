@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>一键办理</title>
+<link href="css/base.css" type="text/css" rel="stylesheet">
+<link href="css/addlv.css" type="text/css" rel="stylesheet">
+</head>
+<body class="body">
+    <div class="title">
+    	<img src="images/income.png">
+        <div class="title-mid">
+    	<span>+300</span>
+    	<span>四海一家</span>
+       </div>
+    	<div class="title-rt" id="title-rt">
+    		<div class="in">&times;
+    		</div>
+    	</div>
+    </div>
+    <div class="choose">
+        <p>选择账目类型</p>
+        <ul class="choose-img" id='choose'>
+            <li><img src="images/food.png" alt='food' data-id='food'></li>
+            <li><img src="images/dress.png" alt='dress' data-id='dress'></li>
+            <li><img src="images/transport.png" alt='transport' data-id='transport'></li>
+            <li><img src="images/shopping.png" alt='shopping' data-id='shopping'></li>
+            <li><img src="images/income.png" alt='income' data-id='income'></li>
+        </ul>
+    </div>
+    <div class="project">
+        <div class="o"></div>
+        <span>事项</span><input type="text" id="msg">
+    </div>
+    <div class="project">
+        <div class="o"></div>
+        <span>金额</span><input type="text" id="money">
+    </div>
+    <button class="but" id="save">保存</button>
+    <script type="text/javascript">  
+            //全局变量，触摸开始位置  
+            var startX = 0, startY = 0;  
+            var titlert=document.getElementById("title-rt"); 
+            var title=document.getElementsByClassName("title-rt");
+            //touchstart事件  
+            function touchSatrtFunc(evt) {  
+                try  
+                {  
+                    evt.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等  
+  
+                    var touch = evt.touches[0]; //获取第一个触点  
+                    var x = Number(touch.pageX); //页面触点X坐标  
+                    startX = x;  
+                    startY = y;  
+  
+                }  
+                catch (e) {  
+                    alert('touchSatrtFunc：' + e.message);  
+                }  
+            }  
+  
+            //touchmove事件，这个事件无法获取坐标  
+            function touchMoveFunc(evt) {  
+                try  
+                {  
+                    evt.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等  
+                    var touch = evt.touches[0]; //获取第一个触点  
+                    var x = Number(touch.pageX); //页面触点X坐标  
+                   
+  
+                    //判断滑动方向  
+                    if ( startX-x >5) {  
+                        text += '<br/>左右滑动';  
+                    }  
+                }  
+                catch (e) {  
+                    alert('touchMoveFunc：' + e.message);  
+                }  
+            }  
+  
+           
+            function bindEvent() {  
+                title.addEventListener('touchstart', touchSatrtFunc, false);  
+                title.addEventListener('touchmove', touchMoveFunc, false);  
+                title.addEventListener('touchend', touchEndFunc, false);  
+            }  
+  
+            bindEvent();
+    </script>  
+    <script src='js/util.js'></script>
+    <script>
+        (function(){
+            var category;
+            var choose = util.$('choose');
+            var msg = util.$('msg');
+            var money = util.$('money');
+            var save = util.$('save');
+            util.addEvent(choose,'click',function(event){
+                var e = util.getEvent(event);
+                var target = util.getTarget(e);
+                category = target.dataset.id;
+            });
+            util.addEvent(save,'click',function(event){
+               if(category){
+                    var count = localStorage.count ? Number(localStorage.count) : 0;
+                    var dataObj = {money:money.value,msg:msg.value};
+                    count += 1;
+                    localStorage.count = count;
+                    util.saveData(category + count, dataObj);
+                    
+                    window.location.href = 'index.html';
+                    
+               }else{
+                    alert('请先选择账目类型');
+               }
+            });
+
+        })();
+    </script>
+</body>
+</html>

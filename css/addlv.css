@@ -1,0 +1,118 @@
+
+    .body{
+        background-color: #fff;
+        padding-top: 15px;
+    }
+    .title{
+    	height: 70px;
+    	width: 100%;
+        clear: both;
+        border-top:1px solid #7ECEF4;
+        border-bottom:1px solid #7ECEF4;
+    }
+    .title img{
+    	width: 47px;
+    	margin-left: 7.33%;
+        margin-top: 11px;
+        float: left;
+    }
+    .title-mid{
+        float: left;
+        height: 100%;
+        width: 50%; 
+        margin-left: 4.5%;
+        line-height: 70px;
+    }
+    .title-mid span:nth-child(1){
+        color: #35E47F;
+        font-size: 30px;
+       
+
+    }
+    .title span:nth-child(2){
+    	color: #000;
+        margin-left: 4.5%;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .title-rt{
+        float: right;
+        width: 70px;
+        background-color: #FB6960;
+        height: 100%;
+        position: relative;
+        
+    }
+    .in{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-top: -15px;
+        margin-left: -15px;
+        text-align: center;
+        font-size: 20px;
+        color: #fff;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: 1px solid #fff;
+        line-height: 30px;
+
+    }
+    .choose {
+       margin: 0 15px;
+       height: 100px;
+       clear: both;
+       
+    }
+    .choose p{
+        height: 40px;
+        line-height: 40px;
+        font-size: 18px;
+        margin-left: 5%;
+    }
+    .choose-img li{
+        width: 20%;
+        height: 50px;
+        text-align: center;
+        float: left;
+        cursor: pointer;
+    }
+    .project{
+        width: 100%;
+        position: relative;
+        height: 50px;
+        text-align: center;       
+        border-bottom:1px solid #7ECEF4;
+        margin-bottom: 10px;
+    }
+    .o{
+        width: 100%;
+         border-top:1px solid #7ECEF4;
+    }
+    .project span{
+        position: absolute;
+        left: 8%;
+        top: 14px;
+        font-size:18px; 
+    }
+    .project input{
+        margin-top: 4px;
+        width: 50%;
+        height: 30px;
+        font-size: 16px;
+        border: none;
+        border-bottom: 1px solid #959595;
+    }
+    .but{
+        margin: 0 20px;
+        background-color: #80C1FD;
+        border: none;
+        border-radius: 12px;
+        text-align: center;
+        height: 40px;
+        line-height: 40px;
+        font-size: 18px;
+        color: #fff;
+        display: block;
+    }
