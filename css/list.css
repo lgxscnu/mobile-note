@@ -107,24 +107,13 @@ body{
 .list_next{
     width:12px;
     float:right;
-<<<<<<< HEAD
     margin:12px 4.8% 22px 0;<!--增加该行!-->
     height:20px;<!--增加该行!-->
-
-    
-=======
-    margin:12px 4.8% 22px 0;
-    height:20px;
->>>>>>> 7eb13323f522b0cad1cdd4db4c8ab20217c0e6ce
 }
 .list_next img{
     width:100%;
     height:100%;
-<<<<<<< HEAD
     margin-top:125%;
-=======
-    margin-top:75%;
->>>>>>> 7eb13323f522b0cad1cdd4db4c8ab20217c0e6ce
 }
 /*以下为增加部分*/
 
