@@ -15,6 +15,11 @@ html{
 body{
     background:#fff;
     padding-bottom: 45px;
+    -moz-user-select: none; /*禁止选择文字*/
+    -webkit-user-select: none;
+    -ms-user-select: none; /*IE10*/
+    user-select: none;
+    /*以上4行为增加内容*/
 }
 
 /*header*/
@@ -65,19 +70,25 @@ body{
 #list_con{
     width:100%;
     height:70px;
-    padding:12px 4.8% 22px 7%;
+    overflow:hidden;
+    position:absolute;
+    left:0;
+    <!--增加以上3行!-->
+    <!--删除该行 padding:12px 4.8% 22px 7%;!-->
+    
 }
 .list_img{
     width:50px;
     height:50px;
     float:left;
+    margin:12px 0 22px 7%;<!--增加该行!-->
 }
 
 .list_num{
     width:24.4%;
     height:50px;
     float:left;
-    margin-left: 4.93%;
+    margin:12px 0 22px 4.93%;<!--增加该行!-->
     font-size:30px;
     color:#35e47f;
     line-height:50px;
@@ -86,9 +97,8 @@ body{
 .cost{ color:#ff364e;}
 .list_msg{
     width:41%;
-    
     float:left;
-    margin-left: auto;
+    margin:12px 0 22px;<!--增加该行!-->
     font-size:18px;
     color:#606060;
     line-height: 50px;
@@ -96,14 +106,31 @@ body{
 .list_next{
     width:12px;
     float:right;
-    margin-top:15px;
+    margin:27px 4.8% 22px 0;<!--增加该行!-->
     
 }
 .list_next img{
     width:100%;
     height:100%;
 }
+/*以下为增加部分*/
 
+.edit{
+    width:70px;
+    height:70px;
+    float:right;
+    margin-right: -70px;
+}
+.delete{
+    width:70px;
+    height:70px;
+    float:right;
+    margin-right: -140px;
+}
+
+.edit a,.delete a{
+    display:block;
+}
         
 /*add_item*/
 #add_item{

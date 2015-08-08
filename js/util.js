@@ -19,6 +19,15 @@ var util = (function(){
 			element['on'+event] = callback;
 		}
 	};
+    var removeEvent = function(element,event,callback){
+        if(element.removeEventListener){
+            element.removeEventListener(event,callback,false);
+        }else if(element.detachEvent){
+            element.detachEvent('on'+event,callback);
+        }else{
+            element['on'+event] = null;
+        }
+    };
 
 	var getEvent = function(event){
 		return event ? event : window.event;
@@ -56,6 +65,7 @@ var util = (function(){
 	return {
 		$ : $,
 		addEvent : addEvent,
+        removeEvent: removeEvent,
 		saveData : saveData,
 		readData : readData,
 		getEvent : getEvent,
