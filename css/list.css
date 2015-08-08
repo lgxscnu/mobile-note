@@ -107,7 +107,11 @@ body{
     width:12px;
     float:right;
     margin:12px 4.8% 22px 0;<!--增加该行!-->
+<<<<<<< HEAD
     height：20px；
+=======
+    height:20px;<!--增加该行!-->
+>>>>>>> 41a29ee996e8afe0cfafdb77ecb6f42f745b4152
     
 }
 .list_next img{
