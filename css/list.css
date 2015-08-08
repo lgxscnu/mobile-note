@@ -107,7 +107,7 @@ body{
     width:12px;
     float:right;
     margin:12px 4.8% 22px 0;<!--增加该行!-->
-    height:100%;<!--增加该行!-->
+    height:20px;<!--增加该行!-->
     
 }
 .list_next img{
