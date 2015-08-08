@@ -106,12 +106,14 @@ body{
 .list_next{
     width:12px;
     float:right;
-    margin:27px 4.8% 22px 0;<!--增加该行!-->
+    margin:12px 4.8% 22px 0;<!--增加该行!-->
+    height：20px；
     
 }
 .list_next img{
     width:100%;
     height:100%;
+    padding-top:75%;
 }
 /*以下为增加部分*/
 
