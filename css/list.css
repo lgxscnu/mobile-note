@@ -73,7 +73,8 @@ body{
     overflow:hidden;
     position:absolute;
     left:0;
-    <!--增加以上3行!-->
+    border-bottom: 1px solid #7ecef4;
+    <!--增加以上4行!-->
     <!--删除该行 padding:12px 4.8% 22px 7%;!-->
     
 }
@@ -107,35 +108,35 @@ body{
     width:12px;
     float:right;
     margin:12px 4.8% 22px 0;<!--增加该行!-->
-<<<<<<< HEAD
-    height：20px；
-=======
     height:20px;<!--增加该行!-->
->>>>>>> 41a29ee996e8afe0cfafdb77ecb6f42f745b4152
+
     
 }
 .list_next img{
     width:100%;
     height:100%;
-    padding-top:75%;
+    margin-top:125%;
 }
 /*以下为增加部分*/
 
 .edit{
-    width:70px;
+    width:69px;
     height:70px;
     float:right;
-    margin-right: -70px;
+    margin-right: -69px;
+    border-bottom: 1px solid #7ecef4;
 }
 .delete{
-    width:70px;
+    width:69px;
     height:70px;
     float:right;
-    margin-right: -140px;
+    margin-right: -138px;
+    border-bottom: 1px solid #7ecef4;
 }
 
 .edit a,.delete a{
     display:block;
+    font-size:0;
 }
         
 /*add_item*/

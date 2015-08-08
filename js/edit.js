@@ -8,7 +8,7 @@
             list_con.style.left=0;
         }else{
             list_con.style.overflow='visible';
-            list_con.style.left='-140px';
+            list_con.style.left='-138px';
         }
     }
     
