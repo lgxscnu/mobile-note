@@ -103,16 +103,63 @@
         font-size: 16px;
         border: none;
         border-bottom: 1px solid #959595;
+        text-align: center;
     }
     .but{
-        margin: 0 20px;
+        margin: 0 5%;
         background-color: #80C1FD;
         border: none;
         border-radius: 12px;
         text-align: center;
+        width:90%;
         height: 40px;
         line-height: 40px;
         font-size: 18px;
         color: #fff;
         display: block;
     }
+
+/*增加部分——预览模块*/
+.preview{
+    width:100%;
+    height:68px;
+    border-top: 1px solid #7ecef4;
+    border-bottom: 1px solid #7ecef4;
+}
+.preview_img{
+    width:50px;
+    height:50px;
+    float:left;
+    margin:12px 0 22px 7%;
+}
+.preview_num{
+    width:24.4%;
+    height:50px;
+    float:left;
+    margin:10px 0 22px 4.93%;
+    font-size:30px;
+    color:#35e47f;
+    line-height:50px;
+}
+.cost{ color:#ff364e;}
+.earn{ color:#35e47f;}
+.preview_msg{
+    width:27%;
+    float:left;
+    margin:12px 0 22px;
+    font-size:18px;
+    font-weight:500;
+    color:#606060;
+    line-height: 50px;
+}
+.delete{
+    width:65px;
+    height:69px;
+    float:right;
+}
+.delete a{
+    display:block;
+    font-size:0;
+}
+    
+

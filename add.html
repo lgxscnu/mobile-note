@@ -9,6 +9,7 @@
 <link href="css/addlv.css" type="text/css" rel="stylesheet">
 </head>
 <body class="body">
+    <!--
     <div class="title">
     	<img src="images/income.png">
         <div class="title-mid">
@@ -19,6 +20,17 @@
     		<div class="in">&times;
     		</div>
     	</div>
+    </div>
+!-->
+    <div class="preview">
+        <div class="preview_img">
+            <img src="images/dress.png"/>
+        </div>
+        <div class="preview_num cost">-300</div>
+        <div class="preview_msg">衣服</div>
+        <div class="delete">
+            <a href="#"><img src="images/delete3.png"/></a>
+        </div>   
     </div>
     <div class="choose">
         <p>选择账目类型</p>
@@ -32,13 +44,14 @@
     </div>
     <div class="project">
         <div class="o"></div>
-        <span>事项</span><input type="text" id="msg">
+        <span>事项</span><input type="text" id="msg"/>
     </div>
     <div class="project">
         <div class="o"></div>
-        <span>金额</span><input type="text" id="money">
+        <span>金额</span><input type="text" id="money"/>
     </div>
     <button class="but" id="save">保存</button>
+    <!--
     <script type="text/javascript">  
             //全局变量，触摸开始位置  
             var startX = 0, startY = 0;  
@@ -88,27 +101,31 @@
             }  
   
             bindEvent();
-    </script>  
+    </script> 
+!-->
     <script src='js/util.js'></script>
     <script>
-        (function(){
+    (function(){
             var category;
             var choose = util.$('choose');
             var msg = util.$('msg');
             var money = util.$('money');
             var save = util.$('save');
+    
             util.addEvent(choose,'click',function(event){
                 var e = util.getEvent(event);
                 var target = util.getTarget(e);
                 category = target.dataset.id;
             });
+        
             util.addEvent(save,'click',function(event){
                if(category){
                     var count = localStorage.count ? Number(localStorage.count) : 0;
                     var dataObj = {money:money.value,msg:msg.value};
                     count += 1;
+                    console.log('this is add.html的count(save后):'+count);
                     localStorage.count = count;
-                    util.saveData(category + count, dataObj);
+                    util.saveData(count+category, dataObj);
                     
                     window.location.href = 'index.html';
                     
@@ -116,8 +133,7 @@
                     alert('请先选择账目类型');
                }
             });
-
-        })();
+    })();
     </script>
 </body>
 </html>

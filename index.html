@@ -15,31 +15,53 @@
     </div>
     
     <div id="list_item">
-       
-        <div id="date_wrap">
-            <div id="date">7/20/2015</div>
+       <!--
+        <div id="date_wrap'+1+'" class="date_wrap">
+            <div class="date">7/20/2015</div>
         </div>
         
-        <div id="list_con">
+        <div id="list_con'+1+'" class="list_con">
             <div class="list_img">
                 <img src="images/dress.png"/>
             </div>
             <div class="list_num cost">-300</div>
             <div class="list_msg">衣服</div>
-            <!--增加部分!-->
-            <div class="edit">
+            
+            <div class="edit" id="list_edit'+1+'">
                 <a href="#"><img src="images/edit2.png"/></a>
             </div>
-            <div class="delete">
+            <div class="delete" id="list_delete'+1+'">
                 <a href="#"><img src="images/delete2.png"/></a>
             </div>
-            <!--以上为增加部分!-->
+            
             <div class="list_next">
                 <img src="images/next2.png"/>
             </div>
-            
         </div>
         
+        <div id="date_wrap'+2+'" class="date_wrap">
+            <div class="date">7/20/2015</div>
+        </div>
+        
+        <div id="list_con'+2+'" class="list_con">
+            <div class="list_img">
+                <img src="images/dress.png"/>
+            </div>
+            <div class="list_num cost">-300</div>
+            <div class="list_msg">衣服</div>
+            
+            <div class="edit" id="list_edit'+2+'">
+                <a href="#"><img src="images/edit2.png"/></a>
+            </div>
+            <div class="delete" id="list_delete'+2+'">
+                <a href="#"><img src="images/delete2.png"/></a>
+            </div>
+            
+            <div class="list_next">
+                <img src="images/next2.png"/>
+            </div>
+        </div>
+!-->
         
     </div>
     
@@ -64,7 +86,7 @@
                     var save_date = date+ '/' +month+'/'+year;
                     var colorClass = obj.money > 0? "earn" : "cost" ;
                     key = key.replace(/\d*/g, "");
-                    html += '<div id="date_wrap"><div id="date">'+save_date+'</div></div><div id="list_con"><div class="list_img"><img src="images/'+key+'.png"/></div>'
+                    html += '<div id="date_wrap'+1+'" class="date_wrap"><div class="date">'+save_date+'</div></div><div id="list_con'+1+'" class="list_con"><div class="list_img"><img src="images/'+key+'.png"/></div>'
                  + '<div class="list_num '+ colorClass +'">' + obj.money + '</div>'
                  + '<div class="list_msg">'+ obj.msg +'</div>'
                  + '<div class="list_next"><img src="images/next.png"/></div></div>';

@@ -3,6 +3,19 @@ var util = (function(){
 	var $ = function(id){
 		return document.getElementById(id);
 	};
+    
+    var byClass = function(classname,parent){
+        var oParent = parent?document.getElementById(parent):document,
+            ele=[],
+            elements = oParent.getElementsByTagName('*');
+        for(var i=0;i<elements.length;i++){
+            if(elements[i].className==classname){
+                ele.push(elements[i]);
+            }
+        }
+        return ele;//返回的是数组
+    }
+    
 	/*----------------------------------------------------
 	 *事件绑定
 	 *@param element {object} 要绑定事件的节点或对象
@@ -26,6 +39,20 @@ var util = (function(){
             element.detachEvent('on'+event,callback);
         }else{
             element['on'+event] = null;
+        }
+    };
+    var preventEvent = function(event){
+        if(event.preventDefault){
+            event.preventDefault();
+        }else{
+            event.returnValue=false;
+        }
+    };
+    var stopEvent = function(event){
+        if(event.stopPropagation){
+            event.stopPropagation();
+        }else{
+            event.cancelBubble=true;
         }
     };
 
@@ -61,11 +88,16 @@ var util = (function(){
   			return false;
   		}
 	};
+    
+    
 
 	return {
 		$ : $,
+        byClass:byClass,
 		addEvent : addEvent,
         removeEvent: removeEvent,
+        preventEvent: preventEvent,
+        stopEvent: stopEvent,
 		saveData : saveData,
 		readData : readData,
 		getEvent : getEvent,
