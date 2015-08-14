@@ -3,6 +3,7 @@ var util = (function(){
 	var $ = function(id){
 		return document.getElementById(id);
 	};
+<<<<<<< HEAD
     
     var byClass = function(classname,parent){
         var oParent = parent?document.getElementById(parent):document,
@@ -16,6 +17,8 @@ var util = (function(){
         return ele;//返回的是数组
     }
     
+=======
+>>>>>>> f87c2ffc0051d9a52bb78c52dd76a207c2abe55c
 	/*----------------------------------------------------
 	 *事件绑定
 	 *@param element {object} 要绑定事件的节点或对象
@@ -32,6 +35,7 @@ var util = (function(){
 			element['on'+event] = callback;
 		}
 	};
+<<<<<<< HEAD
     var removeEvent = function(element,event,callback){
         if(element.removeEventListener){
             element.removeEventListener(event,callback,false);
@@ -55,6 +59,8 @@ var util = (function(){
             event.cancelBubble=true;
         }
     };
+=======
+>>>>>>> f87c2ffc0051d9a52bb78c52dd76a207c2abe55c
 
 	var getEvent = function(event){
 		return event ? event : window.event;
@@ -88,6 +94,7 @@ var util = (function(){
   			return false;
   		}
 	};
+<<<<<<< HEAD
     
     
 
@@ -98,9 +105,19 @@ var util = (function(){
         removeEvent: removeEvent,
         preventEvent: preventEvent,
         stopEvent: stopEvent,
+=======
+
+	return {
+		$ : $,
+		addEvent : addEvent,
+>>>>>>> f87c2ffc0051d9a52bb78c52dd76a207c2abe55c
 		saveData : saveData,
 		readData : readData,
 		getEvent : getEvent,
 		getTarget : getTarget
 	};
+<<<<<<< HEAD
 })();
+=======
+})();
+>>>>>>> f87c2ffc0051d9a52bb78c52dd76a207c2abe55c

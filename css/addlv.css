@@ -9,6 +9,10 @@
         clear: both;
         border-top:1px solid #7ECEF4;
         border-bottom:1px solid #7ECEF4;
+<<<<<<< HEAD
+=======
+        display: none;
+>>>>>>> f87c2ffc0051d9a52bb78c52dd76a207c2abe55c
     }
     .title img{
     	width: 47px;
@@ -103,21 +107,31 @@
         font-size: 16px;
         border: none;
         border-bottom: 1px solid #959595;
+<<<<<<< HEAD
         text-align: center;
     }
     .but{
         margin: 0 5%;
+=======
+    }
+    .but{
+        margin: 0 20px;
+>>>>>>> f87c2ffc0051d9a52bb78c52dd76a207c2abe55c
         background-color: #80C1FD;
         border: none;
         border-radius: 12px;
         text-align: center;
+<<<<<<< HEAD
         width:90%;
+=======
+>>>>>>> f87c2ffc0051d9a52bb78c52dd76a207c2abe55c
         height: 40px;
         line-height: 40px;
         font-size: 18px;
         color: #fff;
         display: block;
     }
+<<<<<<< HEAD
 
 /*增加部分——预览模块*/
 .preview{
@@ -174,3 +188,5 @@
     border-radius:24px;
 }
 
+=======
+>>>>>>> f87c2ffc0051d9a52bb78c52dd76a207c2abe55c
