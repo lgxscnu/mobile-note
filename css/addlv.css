@@ -138,11 +138,16 @@
     float:left;
     margin:10px 0 22px 4.93%;
     font-size:30px;
-    color:#35e47f;
+    color:#606060;
     line-height:50px;
 }
 .cost{ color:#ff364e;}
 .earn{ color:#35e47f;}
+.preview_num span{ 
+    font-size:17px;
+    line-height:55px;
+    display: block;
+}
 .preview_msg{
     width:27%;
     float:left;
@@ -152,14 +157,20 @@
     color:#606060;
     line-height: 50px;
 }
-.delete{
+
+.preview_delete{
     width:65px;
     height:69px;
     float:right;
 }
-.delete a{
+.preview_delete a{
     display:block;
     font-size:0;
 }
-    
+.choose_img{
+    width:48px;
+    height:48px;
+    border:2px solid #FB6960;
+    border-radius:24px;
+}
 

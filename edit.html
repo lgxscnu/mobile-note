@@ -9,16 +9,18 @@
 <link href="css/addlv.css" type="text/css" rel="stylesheet">
 </head>
 <body class="body">
-    
-    <div class="preview">
+  
+    <div class="preview" id="preview">
+        <!--
         <div class="preview_img" >
             <img src="images/preview3.png" id="preview_img"/>
         </div>
-        <div class="preview_num" id="preview_num" ><span>金额</span></div>
+        <div class="preview_num cost" id="preview_num" ><span>金额</span></div>
         <div class="preview_msg" id="preview_msg">事项</div>
         <div class="preview_delete" id="preview_delete">
             <a href="#"><img src="images/delete3.png"/></a>
         </div>   
+        !-->
     </div>
     <div class="choose">
         <p>选择账目类型</p>
@@ -39,62 +41,32 @@
         <span>金额</span><input type="text" id="money"/>
     </div>
     <button class="but" id="save">保存</button>
-    <!--
-    <script type="text/javascript">  
-            //全局变量，触摸开始位置  
-            var startX = 0, startY = 0;  
-            var titlert=document.getElementById("title-rt"); 
-            var title=document.getElementsByClassName("title-rt");
-            //touchstart事件  
-            function touchSatrtFunc(evt) {  
-                try  
-                {  
-                    evt.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等  
-  
-                    var touch = evt.touches[0]; //获取第一个触点  
-                    var x = Number(touch.pageX); //页面触点X坐标  
-                    startX = x;  
-                    startY = y;  
-  
-                }  
-                catch (e) {  
-                    alert('touchSatrtFunc：' + e.message);  
-                }  
-            }  
-  
-            //touchmove事件，这个事件无法获取坐标  
-            function touchMoveFunc(evt) {  
-                try  
-                {  
-                    evt.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等  
-                    var touch = evt.touches[0]; //获取第一个触点  
-                    var x = Number(touch.pageX); //页面触点X坐标  
-                   
-  
-                    //判断滑动方向  
-                    if ( startX-x >5) {  
-                        text += '<br/>左右滑动';  
-                    }  
-                }  
-                catch (e) {  
-                    alert('touchMoveFunc：' + e.message);  
-                }  
-            }  
-  
-           
-            function bindEvent() {  
-                title.addEventListener('touchstart', touchSatrtFunc, false);  
-                title.addEventListener('touchmove', touchMoveFunc, false);  
-                title.addEventListener('touchend', touchEndFunc, false);  
-            }  
-  
-            bindEvent();
-    </script> 
-!-->
+    
     <script src='js/zepto.min.js'></script>
     <script src='js/util.js'></script>
     <script>
     (function(){
+        
+        //预览模块
+        var url=location.search;
+        if(url.indexOf("?")!=-1){
+            var str=url.substr(1),
+                keyname=str.substr(str.indexOf('=')+1);
+        }
+        var html='',
+            preview=util.$('preview');
+            
+        for(key in localStorage){
+            if(key==keyname){
+                var obj = util.readData(key),
+                    key2 = key.replace(/\d*/g,''),
+                    colorClass = key2 == 'income'? "earn" : "cost" ,
+                    symbol =  key2 == 'income'? '+':'-';
+                html+='<div class="preview_img"><img src="images/'+key2+'.png" id="preview_img"/></div>'+'<div class="preview_num '+colorClass+'" id="preview_num"><span>'+symbol+obj.money+'</span></div>'+'<div class="preview_msg" id="preview_msg">'+obj.msg+'</div>'+'<div class="preview_delete" id="preview_delete"><a href="#"><img src="images/delete3.png"/></a></div>';
+            }
+        }
+        preview.innerHTML=html;
+        
             var category;
             var choose = util.$('choose');
             var msg = util.$('msg');
@@ -103,6 +75,18 @@
             var target_in;
             var preview_num = util.$('preview_num');
             var preview_msg = util.$('preview_msg');
+        
+        //自动填充
+        var imgs = choose.getElementsByTagName('img');
+        for(var j=0;j<imgs.length;j++){
+            if(imgs[j].dataset.id==key2){
+                category = key2;
+                var target_in=imgs[j];
+                imgs[j].className='choose_img';
+            }
+        }
+        money.value=obj.money;
+        msg.value=obj.msg;
         
         //选择账目事件
         $('#choose').tap(function(event){
@@ -120,13 +104,11 @@
                         target_touch.className='choose_img';
                         target_in = target_touch;
                     }
+                    var colorClass2= category=='income'?'earn' : 'cost',
+                        symbol2 =  category == 'income'? '+':'-';
                     util.$('preview_img').src='images/'+category+'.png';
-                    if(money.value){
-                        var colorClass2= category=='income'?'earn' : 'cost',
-                            symbol2 =  category == 'income'? '+':'-';
-                        preview_num.className = "preview_num "+colorClass2;
-                        preview_num.innerHTML='<span>'+symbol2+money.value+'</span>';
-                    }
+                    preview_num.className = "preview_num "+colorClass2;
+                    preview_num.innerHTML='<span>'+symbol2+money.value+'</span>';
                 }
             });
         
@@ -141,9 +123,7 @@
             function previewNum(){
                 if(money){
                     preview_num.innerHTML='';
-                    var colorClass2= category=='income'?'earn' : 'cost',
-                        symbol2 =  category == 'income'? '+':'-';
-                    preview_num.className = "preview_num "+colorClass2;
+                    var symbol2 =  category == 'income'? '+':'-';
                     preview_num.innerHTML='<span>'+symbol2+money.value+'</span>';
                 }
             }
@@ -166,23 +146,21 @@
                 target_touch=null;
                 msg.value='';
                 money.value='';
+                
             });
                     
         
         //保存
-        $('#save').tap(function(event){
-            //util.addEvent(save,'touchstart',function(event){
+        $('#save').tap(function(){
+            //util.addEvent(save,'click',function(event){
                if(category && msg.value && money.value){
-                    var count = localStorage.count ? Number(localStorage.count) : 0;
-                    var now = new Date();
-                    var month = now.getMonth()+1;
-                    var dataObj = {money:money.value,msg:msg.value,mont:month};
-                    count += 1;
-                    localStorage.count = count;
-                    util.saveData(count+category, dataObj);
-                    
-                    window.location.href = 'index.html';
-                    
+                   var edit_count=keyname.substring(0,keyname.indexOf(key2));
+                   var now = new Date();
+                   var month = now.getMonth()+1;
+                   var dataObj = {money:money.value,msg:msg.value,mont:month};
+                   localStorage.removeItem(keyname);
+                   util.saveData(edit_count+category, dataObj);
+                   window.location.href = 'index.html';
                }else if(!category){
                    alert('请选择账目类型');
                }else if(!msg.value){

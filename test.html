@@ -1,0 +1,466 @@
+<!-- HTML5 -->  
+<!DOCTYPE html>  
+<html>  
+    <head> 
+        <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    
+    <meta content="telephone=no" name="format-detection"> 
+        <title>统计图</title>  
+        <meta charset="gbk">  
+        <style>
+*{
+    margin:0;
+    padding:0;
+    font-family: '微软雅黑';
+}
+ul,li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+body{
+    text-align: center;
+    width: 100%;
+}
+/*header*/
+#header{
+    width:100%;
+    height:50px;
+}
+.header_txt{
+    width:50%;
+    height:50px;
+    float:left;
+}   
+.header_txt a{
+    display: block;
+    width:100%;
+    height:100%;
+    font-family: "SourceHanSansCN";
+    font-size:18px;
+    line-height:50px;
+    color:#fff; 
+    text-align: center;
+}
+.list{
+    background:#6ab7ff;
+}
+.review{
+    background:#406e99;
+}
+            
+.images{
+    width: 320px;
+    height: 300px;
+    
+    margin:50px auto;
+    position: relative;
+}
+.images ul{
+  
+    border-bottom: 1px solid black;
+    width: 100%;
+    height: 80%;
+    clear: both;
+   
+}
+#myCanvas{
+     width: 100%;
+    height: 80%;
+    position: absolute;
+    
+    top: 52px;
+    margin-left: -181px;
+}
+.images ul li{
+    float: left;
+    border-right: 1px dashed black;
+    height: 100%;
+    width: 16%;
+}
+.images p{
+    margin-left: 8%;
+    font-size: 20px;
+    color: #000;
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.month{
+    width: 100%;
+    text-align: right;
+   
+
+}
+.images span{
+    display: inline-block;
+     width: 16%;
+    font-size: 18px;
+    color: #000;
+    text-align: center;
+}
+
+.circle{
+    width: 285px;
+    height: 285px;
+    margin-top: 50px;
+    position: relative;
+    margin: 0 auto;
+
+}
+.circle canvas{
+  position: absolute;
+  top: 0;
+  margin-left: -50%;
+  left: 50%;
+}
+.circle p{
+  position: absolute;
+  left:52px;
+  top: 52px;
+  width:180px;
+  height: 180px;
+  border-radius: 50%;
+  background-color: #fff;
+  z-index: 5;
+}
+.circle-top {
+  clear: both;
+  overflow: hidden;
+  zoom:1;
+  position: relative;
+  width: 300px;
+  margin: 20px auto;
+}
+.circle-top li{
+    width: 50%;
+    height: 30px;
+    float: left;
+    line-height: 30px;
+    color: black;
+    font-size: 20px;
+    
+}
+.circle-top span{
+  display:inline-block;
+  width: 20px;
+  height: 20px;
+  line-height: 30px;
+  border-radius: 10px;
+}
+.circle-top p{
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  height: 30px;
+  line-height: 30px;
+  color: #000;
+}
+        </style>
+    </head>  
+    <body>
+        <div id="header">
+            <div class="header_txt list"><a href="index.html">账目列表</a></div>
+            <div class="header_txt review"><a href="test.html">账目统计</a></div>
+        </div>
+       <div class="circle-top">
+        <p>支出占比饼图</p>
+      <ul>
+            <li  id="percent1"style="text-align:left"><span style="background:blue;"></span>餐饮</li>
+            <li  id="percent2" style="text-align:left"><span style="background:red;"></span>服装</li>
+            <li id="percent3" style="text-align:left"><span style="background:yellow;"></span>交通</li>
+            <li id="percent4" style="text-align:left"><span style="background:green;"></span>购物</li>
+            
+       </ul>
+    </div>
+    <div class="circle">
+          
+          <canvas id="canvas1" width="284" height="284"></canvas>
+          <canvas id="canvas2" width="284" height="284"></canvas>
+          <canvas id="canvas3" width="284" height="284"></canvas>
+          <canvas id="canvas4" width="284" height="284"></canvas>
+          <canvas id="canvas5" width="284" height="284"></canvas>
+          <canvas id="canvas6" width="284" height="284"></canvas>
+          <p></p>
+    </div>
+    <div class="images">
+        <p>月平均收入（绿色）/支出（红色）&nbsp;折线图</p>
+        <ul>
+            <li style="width:9%"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <canvas id="myCanvas" ></canvas>
+        <div class="month">
+            <span>七月</span><span>八月</span><span>九月</span>
+            <span>十月</span><span>十一月</span><span>十二月</span></div>
+        
+    </div> 
+   
+<script src='js/util.js'></script>
+<script>
+(function(){
+    
+    var food_all=0,
+        dress_all=0,
+        transport_all=0,
+        shopping_all=0;
+    
+    var cost_7=0,
+        cost_8=0,
+        cost_9=0,
+        cost_10=0,
+        cost_11=0,
+        cost_12=0;
+    
+    var earn_7=0,
+        earn_8=0,
+        earn_9=0,
+        earn_10=0,
+        earn_11=0,
+        earn_12=0; 
+    
+    for(key in localStorage){
+            if(localStorage.hasOwnProperty(key) && key!=="length" && key!=="count"){
+                var obj = util.readData(key);
+                if(key.indexOf('income')!=-1){
+                    if(obj.mont==7){
+                        earn_7+=Number(obj.money);
+                    }else if(obj.mont==8){
+                        earn_8+=Number(obj.money);
+                    }else if(obj.mont==9){
+                        earn_9+=Number(obj.money);
+                    }else if(obj.mont==10){
+                        earn_10+=Number(obj.money);
+                    }else if(obj.mont==11){
+                        earn_11+=Number(obj.money);
+                    }else if(obj.mont==12){
+                        earn_12+=Number(obj.money);
+                    }
+                }else{
+                    if(obj.mont==7){
+                        cost_7+=Number(obj.money);
+                    }else if(obj.mont==8){
+                        cost_8+=Number(obj.money);
+                    }else if(obj.mont==9){
+                        cost_9+=Number(obj.money);
+                    }else if(obj.mont==10){
+                        cost_10+=Number(obj.money);
+                    }else if(obj.mont==11){
+                        cost_11+=Number(obj.money);
+                    }else if(obj.mont==12){
+                        cost_12+=Number(obj.money);
+                    }
+                    if(key.indexOf('food')!= -1){
+                        food_all+=Number(obj.money);
+                    }else if(key.indexOf('dress')!=-1){
+                        dress_all+=Number(obj.money);
+                    }else if(key.indexOf('transport')!=-1){
+                        transport_all+=Number(obj.money);
+                    }else if(key.indexOf('shopping')!=-1){
+                        shopping_all+=Number(obj.money);
+                    }
+                }
+            }
+    }
+    console.log(cost_8);
+        console.log(food_all);
+    console.log(dress_all);
+    console.log(transport_all);
+    console.log(shopping_all);
+    
+    
+    //对收入和支出的最大值取整,其中abcd····为6个月的收入和支出
+    window.line=window.line||{};
+    window.line=(function(){
+         var maxnum=function(a,b,c,d,e,f,g,h,i,j,k,l){
+            a=Math.max(a,b,c,d,e,f,g,h,i,j,k,l);
+            var c=a+"";
+            var s=c.indexOf(".");
+            if(s==-1){
+                c=c+".";
+                s=c.indexOf(".");
+            }
+            s=Math.pow(10,s-1);
+            a=a/s;
+            a=Math.ceil(a);
+            a=a*s;
+            console.log(a);
+            return a;
+          }
+         
+         
+         
+        var max=maxnum(cost_7,cost_8,cost_9,cost_10,cost_11,cost_12,earn_7,earn_8,earn_9,earn_10,earn_11,earn_12);
+       
+        var paint=function(num1,num2,num3,num4,num5,num6,color){
+         
+         var  circle1=(max-num1)/max*150;
+         var  circle2=(max-num2)/max*150;
+         var  circle3=(max-num3)/max*150;
+         var  circle4=(max-num4)/max*150;
+         var  circle5=(max-num5)/max*150;
+         var  circle6=(max-num6)/max*150;
+
+        var c=document.getElementById("myCanvas");
+        var ctx=c.getContext("2d");
+        ctx.lineWidth="1px";
+        ctx.lineStyle = color; 
+        ctx.strokeStyle = color; 
+        ctx.beginPath();
+        
+
+        
+        ctx.moveTo(48,circle1);
+        ctx.arc(48,circle1,3,0,2*Math.PI);
+        ctx.fillStyle=color;
+        ctx.fill();
+        ctx.closePath();
+        ctx.lineTo(97,circle2);
+        ctx.closePath();
+
+        ctx.moveTo(97,circle2);
+        ctx.arc(97,circle2,3,0,2*Math.PI);
+        ctx.fillStyle=color;
+        ctx.fill();
+        ctx.closePath();
+        ctx.moveTo(97,circle2);
+        ctx.lineTo(145,circle3);
+        ctx.closePath();
+
+        ctx.moveTo(145,circle3);
+        ctx.arc(145,circle3,3,0,2*Math.PI);
+        ctx.fillStyle=color;
+        ctx.fill();
+        ctx.closePath();
+        ctx.moveTo(145,circle3);
+        ctx.lineTo(194,circle4);
+        ctx.closePath();
+
+        ctx.moveTo(194,circle4);
+        ctx.arc(194,circle4,3,0,2*Math.PI);
+        ctx.fillStyle=color;
+        ctx.fill();
+        ctx.closePath();
+        ctx.moveTo(194,circle4);
+        ctx.lineTo(243,circle5);
+        ctx.closePath();
+
+        ctx.moveTo(243,circle5);
+        ctx.arc(243,circle5,3,0,2*Math.PI);
+        ctx.fillStyle=color;
+        ctx.fill();
+        ctx.closePath();
+        ctx.moveTo(243,circle5);
+        ctx.lineTo(291,circle6);
+        ctx.closePath();
+
+        ctx.moveTo(291,circle6);
+        ctx.arc(291,circle6,3,0,2*Math.PI);
+        ctx.fillStyle=color;
+        ctx.fill();
+        ctx.closePath();
+
+        ctx.stroke();
+        }
+        
+        
+                    
+        
+    paint(cost_7,cost_8,cost_9,cost_10,cost_11,cost_12,"red");//六个月的支出数据依次为餐饮、服装、交通、购物、住宿、其他
+    paint(earn_7,earn_8,earn_9,earn_10,earn_11,earn_12,"green");//六个月的收入数据依次为餐饮、服装、交通、购物、住宿、其他
+    })();
+
+    
+    
+window.circle=window.circle||{};
+window.circle=(function(a,b,c,d){
+      var total=a+b+c+d;
+      //各个canvas开始和结束的角度
+      var anglea=a/total*2*Math.PI,angleb=(a+b)/total*2*Math.PI;
+      var anglec=(a+b+c)/total*2*Math.PI,angled=(a+b+c+d)/total*2*Math.PI;
+      
+
+      var canvas1=document.getElementById("canvas1");
+      var ctx1=canvas1.getContext("2d");
+      var canvas2=document.getElementById("canvas2");
+      var ctx2=canvas2.getContext("2d");
+      var canvas3=document.getElementById("canvas3");
+      var ctx3=canvas3.getContext("2d");
+      var canvas4=document.getElementById("canvas4");
+      var ctx4=canvas4.getContext("2d");
+      
+      
+
+      var centerx=142,centery=142,radius=142;
+       ctx1.moveTo(centerx,centery);
+       ctx1.arc(centerx,centery,radius,0,anglea);
+       ctx1.closePath();
+       ctx1.fillStyle="blue";
+       ctx1.fill();
+       ctx1.strokeStyle="blue";
+       ctx1.stroke();
+
+       ctx2.beginPath();
+       ctx2.moveTo(centerx,centery)
+       ctx2.arc(centerx,centery,radius,anglea,angleb);
+       ctx2.closePath();
+       ctx2.fillStyle="red";
+       ctx2.fill();
+       ctx2.strokeStyle="red";
+       ctx2.stroke();
+
+       ctx3.beginPath();
+       ctx3.moveTo(centerx,centery)
+       ctx3.arc(centerx,centery,radius,angleb,anglec);
+       ctx3.closePath();
+       ctx3.fillStyle="yellow";
+       ctx3.fill();
+       ctx3.strokeStyle="yellow";
+       ctx3.stroke();
+
+       ctx4.beginPath();
+       ctx4.moveTo(centerx,centery)
+       ctx4.arc(centerx,centery,radius,anglec,angled);
+       ctx4.closePath();
+       ctx4.fillStyle="green";
+       ctx4.fill();
+       ctx4.strokeStyle="green";
+       ctx4.stroke();
+       
+       
+
+       //对数据取百分数
+       Number.prototype.toPercent = function(n){n = n || 2;
+        return ( Math.round( this * Math.pow( 10, n + 2 ) ) / Math.pow( 10, n ) ).toFixed( n ) + '%';}
+      var percent1=(a/total).toPercent(1);
+      var percent2=(b/total).toPercent(1);
+      var percent3=(c/total).toPercent(1);
+      var percent4=(d/total).toPercent(1);
+      
+      
+       document.getElementById("percent1").innerHTML="<span style=\"background:blue;\"></span>餐饮"+percent1;
+       document.getElementById("percent2").innerHTML="<span style=\"background:red;\"></span>服装"+percent2;
+       document.getElementById("percent3").innerHTML="<span style=\"background:yellow;\"></span>交通"+percent3;
+       document.getElementById("percent4").innerHTML="<span style=\"background:green;\"></span>购物"+percent4;
+       
+    
+      
+}(food_all,dress_all,transport_all,shopping_all));//支出的数据，依次为餐饮、服装、交通、购物、住宿、其他
+          
+    
+
+})();
+
+</script>
+</body>
+
+</html>  
